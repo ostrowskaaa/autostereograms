@@ -1,1 +1,1 @@
-# autostereograms
+# Autostereogram solver
