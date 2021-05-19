@@ -38,7 +38,7 @@ st.write("""
     Upload a picture to see what is hidden inside :)
 """)
 
-uploaded_file = st.file_uploader('Upload Files',type=['png','jpeg'])
+uploaded_file = st.file_uploader('Upload Files',type = ['png', 'jpeg', 'jpg'])
 if uploaded_file is not None:
     file_details = {'FileName':uploaded_file.name,
                     'FileType':uploaded_file.type,
