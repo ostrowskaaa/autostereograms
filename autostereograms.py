@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import streamlit as st
+from PIL import Image
 
 def image_difference(vec, image):
     # shift the image 25 pixels to the right
@@ -11,7 +12,8 @@ def image_difference(vec, image):
 
 
 def solve_stereogram(image):
-    image = cv2.imread(image)
+    image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+    #image = cv2.imread(image)
     black_pix = 1000000000000
     answer_img = None
     vec = 1
@@ -27,6 +29,10 @@ def solve_stereogram(image):
     return answer_img
 
 
+def load_img(file):
+    img = Image.open(file)
+    return img
+
 st.title('Autostereogram solver')
 st.write("""
     Upload a picture to see what is hidden inside :)
@@ -38,9 +44,9 @@ if uploaded_file is not None:
                     'FileType':uploaded_file.type,
                     'FileSize':uploaded_file.size}
 
-    image = solve_stereogram(uploaded_file.name)
-    st.image(image, width=None)
-    st.image(uploaded_file.name)
+    image = solve_stereogram(load_img(uploaded_file))
+    st.image(image)
+    st.image(load_img(uploaded_file))
 
 
 cv2.waitKey(0)
