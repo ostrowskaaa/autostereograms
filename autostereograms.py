@@ -13,7 +13,7 @@ def image_difference(vec, image):
 
 def solve_stereogram(image):
     image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-    black_pix = inf
+    black_pix = float('inf')
     answer_img = None
     vec = 1
     while vec < image.shape[1]:
