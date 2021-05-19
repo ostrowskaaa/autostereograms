@@ -13,8 +13,7 @@ def image_difference(vec, image):
 
 def solve_stereogram(image):
     image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-    #image = cv2.imread(image)
-    black_pix = 1000000000000
+    black_pix = inf
     answer_img = None
     vec = 1
     while vec < image.shape[1]:
@@ -33,10 +32,12 @@ def load_img(file):
     img = Image.open(file)
     return img
 
+
 st.title('Autostereogram solver')
 st.write("""
     Upload a picture to see what is hidden inside :)
 """)
+
 
 uploaded_file = st.file_uploader('Upload Files',type = ['png', 'jpeg', 'jpg'])
 if uploaded_file is not None:
